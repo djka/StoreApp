@@ -3,6 +3,7 @@ package com.jfonferko.rest;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class CustomerRestService {
         customerAppService = pCustomerAppService;
     }
 
-    @RequestMapping("/home")
+    @PostMapping("/home")
     public String home() {
         return "Spring boot is working!";
     }

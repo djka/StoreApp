@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,7 +14,10 @@ import javax.persistence.Table;
 public class Customer {
 
     @Id
-    @Column(name = "PESEL")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "PESEL", unique = true)
     private String pesel;
 
     @Column(name = "FIRSTNAME")
@@ -25,9 +30,20 @@ public class Customer {
     }
 
     public Customer(final String pPesel, final String pFirstname, final String pLastname) {
-        pesel = pPesel;
-        firstname = pFirstname;
-        lastname = pLastname;
+        this.id = id;
+        this.pesel = pPesel;
+        this.firstname = pFirstname;
+        this.lastname = pLastname;
+    }
+
+    Customer(final Long id, final String pPesel, final String pFirstname, final String pLastname) {
+        this(pPesel, pFirstname, pLastname);
+        this.id = id;
+
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getPesel() {
@@ -53,22 +69,14 @@ public class Customer {
             return false;
         }
         Customer customer = (Customer) pO;
-        return Objects.equals(pesel, customer.pesel) &&
+        return Objects.equals(id, customer.id) &&
+                Objects.equals(pesel, customer.pesel) &&
                 Objects.equals(firstname, customer.firstname) &&
                 Objects.equals(lastname, customer.lastname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(pesel, firstname, lastname);
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "pesel='" + pesel + '\'' +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                '}';
+        return Objects.hash(id, pesel, firstname, lastname);
     }
 }
