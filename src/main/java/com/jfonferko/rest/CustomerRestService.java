@@ -40,7 +40,7 @@ public class CustomerRestService {
         return customerAppService.save(pCustomer);
     }
 
-    @GetMapping("/activate/{customerId}")
+    @PutMapping("/activate/{customerId}")
     public CustomerDto activateCustomer(@PathVariable Long customerId) throws CustomerNotFoundExpcetion {
         return customerAppService.activateCustomer(customerId);
     }
