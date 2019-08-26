@@ -24,7 +24,7 @@ public class CustomerAppService {
     }
 
     public CustomerDto create(CustomerCreateDto pCustomer) {
-        Customer customerToCreate = new Customer(pCustomer.getPesel(), pCustomer.getFirstname(), pCustomer.getLastname());
+        Customer customerToCreate = new Customer(pCustomer.getPesel(), pCustomer.getFirstname(), pCustomer.getLastname(), true);
         return CustomerDto.of(customerService.create(customerToCreate));
     }
 

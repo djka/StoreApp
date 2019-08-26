@@ -15,6 +15,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CUSTOMERID")
     private Long id;
 
     @Column(name = "PESEL", unique = true)
@@ -25,21 +26,17 @@ public class Customer {
     @Column(name = "LASTNAME")
     private String lastname;
 
+    @Column(name = "ACTIVE")
+    private boolean active;
 
     public Customer() {
     }
 
-    public Customer(final String pPesel, final String pFirstname, final String pLastname) {
-        this.id = id;
-        this.pesel = pPesel;
-        this.firstname = pFirstname;
-        this.lastname = pLastname;
-    }
-
-    Customer(final Long id, final String pPesel, final String pFirstname, final String pLastname) {
-        this(pPesel, pFirstname, pLastname);
-        this.id = id;
-
+    public Customer(final String pPesel, final String pFirstname, final String pLastname, final boolean pActive) {
+        pesel = pPesel;
+        firstname = pFirstname;
+        lastname = pLastname;
+        active = pActive;
     }
 
     public Long getId() {
@@ -58,6 +55,10 @@ public class Customer {
         return lastname;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
     @Override
     public boolean equals(final Object pO) {
         if (this == pO)
@@ -72,11 +73,12 @@ public class Customer {
         return Objects.equals(id, customer.id) &&
                 Objects.equals(pesel, customer.pesel) &&
                 Objects.equals(firstname, customer.firstname) &&
-                Objects.equals(lastname, customer.lastname);
+                Objects.equals(lastname, customer.lastname) &&
+                Objects.equals(active, customer.isActive());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pesel, firstname, lastname);
+        return Objects.hash(id, pesel, firstname, lastname, active);
     }
 }
