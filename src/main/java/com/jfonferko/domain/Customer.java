@@ -59,6 +59,14 @@ public class Customer {
         return active;
     }
 
+    public void activate() {
+        this.active = true;
+    }
+
+    public void deactivate() {
+        this.active = false;
+    }
+
     @Override
     public boolean equals(final Object pO) {
         if (this == pO)
@@ -73,12 +81,11 @@ public class Customer {
         return Objects.equals(id, customer.id) &&
                 Objects.equals(pesel, customer.pesel) &&
                 Objects.equals(firstname, customer.firstname) &&
-                Objects.equals(lastname, customer.lastname) &&
-                Objects.equals(active, customer.isActive());
+                Objects.equals(lastname, customer.lastname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pesel, firstname, lastname, active);
+        return Objects.hash(id, pesel, firstname, lastname);
     }
 }
